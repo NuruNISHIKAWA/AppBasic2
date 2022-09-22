@@ -11,7 +11,7 @@ class ListController extends Controller
     public function index()
     {
         $todos = ToDo::all();
-        return view('index', ['todos' => $todos]);
+        return view('todolist', ['todos' => $todos]);
     }
 
     public function create(ClientRequest $request)
