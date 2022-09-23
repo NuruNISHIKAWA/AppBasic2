@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\ToDo;
+use App\Models\Todo;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ClientRequest;
@@ -10,14 +10,14 @@ class ListController extends Controller
 {
     public function index()
     {
-        $todos = ToDo::all();
+        $todos = Todo::all();
         return view('todolist', ['todos' => $todos]);
     }
 
     public function create(ClientRequest $request)
     {
         $form = $request->all();
-        ToDo::create($form);
+        Todo::create($form);
         return redirect('/');
     }
 
@@ -25,13 +25,13 @@ class ListController extends Controller
     {
         $form = $request->all();
         unset($form['_token']);
-        ToDo::find($request->id)->update($form);
+        Todo::find($request->id)->update($form);
         return redirect('/');
     }
 
         public function remove(ClientRequest $request)
     {
-        ToDo::find($request->id)->delete();
+        Todo::find($request->id)->delete();
         return redirect('/');
     }
 
