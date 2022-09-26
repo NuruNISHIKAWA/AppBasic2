@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 
-  <title>Document</title>
+  <title>ToDoCRUD</title>
 </head>
 <body>
   <div class="list">
@@ -22,9 +22,13 @@
     @endforeach
     </ul>
     @endif
-    <form action="/add" method="POST">
-    <input type="text" name="task">
+    <form action="/add" method="POST" class="add">
+      @csrf
+    <input type="text" name="task" class="add_text">
+    <button class="add_bottun">追加</button>
+    <!--
     <button type="submit" name="add">追加</button>
+-->
     </form>
 
     @if (count($errors) > 0)
@@ -36,7 +40,38 @@
     @endforeach
     </ul>
     @endif
+<form action="/edit" method="POST">
+    <table>
+    @csrf
+      <tr>
+        <th  class="td_text">作成日</th>
+        <th  class="td_text">タスク名</th>
+        <th  class="td_bottun">更新</th>
+        <th  class="td_bottun">削除</th>
+        </tr>
+    @foreach ($todos as $todo)
+    <input type="hidden" name="id" value="{{$todo->id}}">
+      <tr>
+        <td class="td_text">
+          {{$todo->created_at}}
+        </td>
+        <td class="td_text">
+          <input type="text" name="task" value="{{$todo->task}}" class="edit_text">
+        </td>
+        <td class="td_bottun">
+          @csrf
+          <button type="submit" class="edit_bottun">更新</button>
+        </td>
+        <td class="td_bottun">
+          @csrf
+          <button type="submit" formaction="/delete" class="delete_bottun">削除</button>
+        </td>
+        </tr>
+    @endforeach
+    </table>
+  </form>
 
+    <!--
   <form action="/" method="POST">
     <table>
     @csrf
@@ -64,6 +99,7 @@
     @endforeach
     </table>
   </form>
+-->
 </div>
   
 </body>

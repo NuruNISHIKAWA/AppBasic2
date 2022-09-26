@@ -24,8 +24,6 @@ class ClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'created_at' => 'integer|min:0|max:20',
-            'updated_at' => 'integer|min:0|max:20',
             'task' => 'required',
         ];
     }

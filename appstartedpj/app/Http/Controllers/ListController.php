@@ -31,9 +31,29 @@ class ListController extends Controller
 
         public function remove(ClientRequest $request)
     {
+        //dd($request->task);
         Todo::find($request->id)->delete();
         return redirect('/');
     }
+
+/*
+            public function change(ClientRequest $request)
+    {
+        //dd($request);
+        if ($request->has('update')){
+        $form = $request->all();
+        unset($form['_token']);
+        Todo::find($request->id)->update($form);
+        return redirect('/');
+
+        }elseif ($request->has('remove')){
+            dd($request->id);
+        Todo::find($request->id)->delete();
+        dd($request->id);
+        return redirect('/');
+        }
+    }
+    */
 
 
 }

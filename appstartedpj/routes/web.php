@@ -22,3 +22,4 @@ Route::get('/', [ListController::class, 'index']);
 Route::post('/add', [ListController::class, 'create']);
 Route::post('/edit', [ListController::class, 'update']);
 Route::post('/delete', [ListController::class, 'remove']);
+Route::post('/change', [ListController::class, 'change']);
