@@ -40,7 +40,7 @@
     @endforeach
     </ul>
     @endif
-<form action="/edit" method="POST">
+
     <table>
     @csrf
       <tr>
@@ -50,10 +50,11 @@
         <th  class="td_bottun">削除</th>
         </tr>
     @foreach ($todos as $todo)
-    <input type="hidden" name="id" value="{{$todo->id}}">
+    <form action="/edit" method="POST">
       <tr>
         <td class="td_text">
           {{$todo->created_at}}
+          <input type="hidden" name="id" value="{{$todo->id}}">
         </td>
         <td class="td_text">
           <input type="text" name="task" value="{{$todo->task}}" class="edit_text">
@@ -67,9 +68,10 @@
           <button type="submit" formaction="/delete" class="delete_bottun">削除</button>
         </td>
         </tr>
+      </form>
     @endforeach
     </table>
-  </form>
+
 
     <!--
   <form action="/" method="POST">
